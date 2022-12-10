@@ -84,7 +84,7 @@ public class GameController : MonoBehaviour {
 
     private void RemoveAllDart() {
         foreach (Dart dart in _lsDart) {
-            Destroy(dart);
+            Destroy(dart.gameObject);
         }
         _lsDart.Clear();
     }

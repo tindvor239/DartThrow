@@ -41,10 +41,8 @@ public class Dart : MonoBehaviour {
 
     private void CheckDartDistance() {
         float ySize = colliderSize.x / 2;
-        Debug.Log("My Y Size: " + ySize);
 
         float xSize = colliderSize.y / 2;
-        Debug.Log("My X Size: " + xSize);
         foreach (Dart dart in _lsDart) {
             if (dart == this) {
                 continue;
@@ -54,13 +52,10 @@ public class Dart : MonoBehaviour {
             Vector2 direction = transform.position - dart.transform.position;
             direction.y = Mathf.Abs(direction.y);
             direction.x = Mathf.Abs(direction.x);
-            Debug.Log("Direction Vector: " + direction);
 
             float dartYSize = dart.colliderSize.x / 2;
-            Debug.Log("Dart Y Size: " + dartYSize);
 
             float dartXSize = dart.colliderSize.y / 2;
-            Debug.Log("Dart X Size: " + dartXSize);
 
             if (direction.y <= ySize + dartYSize) {
                 yHit = true;
@@ -78,8 +73,19 @@ public class Dart : MonoBehaviour {
     }
 
     private void CheckTargetDistance() {
-        float distance = Vector2.Distance(transform.position, _target.transform.position);
-        bool isHit = distance + _target.spinerRadius <= colliderSize.x;
+        float ySize = colliderSize.x / 2;
+        Debug.Log("My Y Size: " + ySize);
+
+        Vector2 currentPosition = transform.position;
+        currentPosition.y += ySize;
+        Debug.Log("My Position: " + currentPosition);
+
+        Vector2 direction = (Vector2)_target.transform.position - currentPosition;
+        direction.y = Mathf.Abs(direction.y);
+        direction.x = Mathf.Abs(direction.x);
+        Debug.Log("Direction Vector: " + direction);
+
+        bool isHit = direction.y - _target.spinerRadius <= 0;
         if (isHit) {
             Debug.Log("Is Hit:" + isHit);
             Hit();
