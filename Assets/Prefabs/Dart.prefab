@@ -101,4 +101,4 @@ MonoBehaviour:
   _state: 0
   _lsDart: []
   _target: {fileID: 0}
-  colliderSize: {x: 1.4, y: 0.1, z: 0}
+  colliderSize: {x: 1, y: 0.1, z: 0}
